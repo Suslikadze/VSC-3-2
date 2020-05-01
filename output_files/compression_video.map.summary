@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Wed Apr 29 00:03:48 2020
+Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+Revision Name : compression_video
+Top-level Entity Name : compression_video
+Family : Cyclone IV E
+Total logic elements : 455
+    Total combinational functions : 455
+    Dedicated logic registers : 63
+Total registers : 63
+Total pins : 41
+Total virtual pins : 0
+Total memory bits : 84,480
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0

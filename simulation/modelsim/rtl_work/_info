@@ -1,0 +1,77 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/Suslikadze/Desktop/NII Televidenia/VSC/simulation/modelsim
+vcompression_video
+Z1 !s110 1588080085
+!i10b 1
+!s100 `ekz12DLK<YSC1mkgYRz_2
+I=;[kfJ=>QEMa;8N>KHZX02
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1588079924
+8C:/Users/Suslikadze/Desktop/NII Televidenia/VSC/Lines.v
+FC:/Users/Suslikadze/Desktop/NII Televidenia/VSC/Lines.v
+L0 5
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z4 !s108 1588080084.000000
+!s107 C:/Users/Suslikadze/Desktop/NII Televidenia/VSC/Parameters.v|C:/Users/Suslikadze/Desktop/NII Televidenia/VSC/Lines.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Suslikadze/Desktop/NII Televidenia/VSC|C:/Users/Suslikadze/Desktop/NII Televidenia/VSC/Lines.v|
+!i113 1
+Z5 o-vlog01compat -work work
+Z6 !s92 -vlog01compat -work work {+incdir+C:/Users/Suslikadze/Desktop/NII Televidenia/VSC}
+Z7 tCvgOpt 0
+vcompression_video_vlg_tst2
+R1
+!i10b 1
+!s100 @WP?``E>oIcm7`M07EC^I1
+I8jJ9`4hU37llI18ETZ6YE2
+R2
+R0
+w1588080068
+8C:/Users/Suslikadze/Desktop/NII Televidenia/VSC/simulation/modelsim/compression.vt
+FC:/Users/Suslikadze/Desktop/NII Televidenia/VSC/simulation/modelsim/compression.vt
+L0 28
+R3
+r1
+!s85 0
+31
+!s108 1588080085.000000
+!s107 C:/Users/Suslikadze/Desktop/NII Televidenia/VSC/simulation/modelsim/compression.vt|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Suslikadze/Desktop/NII Televidenia/VSC/simulation/modelsim|C:/Users/Suslikadze/Desktop/NII Televidenia/VSC/simulation/modelsim/compression.vt|
+!i113 1
+R5
+!s92 -vlog01compat -work work {+incdir+C:/Users/Suslikadze/Desktop/NII Televidenia/VSC/simulation/modelsim}
+R7
+vRAM_1
+!s110 1588080084
+!i10b 1
+!s100 [QBi@k3Q5c:kY9?[mQ^WU3
+IYi1bOTK>Md@E2X`YLZYYY1
+R2
+R0
+w1588075901
+8C:/Users/Suslikadze/Desktop/NII Televidenia/VSC/RAM_1.v
+FC:/Users/Suslikadze/Desktop/NII Televidenia/VSC/RAM_1.v
+L0 39
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:/Users/Suslikadze/Desktop/NII Televidenia/VSC/RAM_1.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Suslikadze/Desktop/NII Televidenia/VSC|C:/Users/Suslikadze/Desktop/NII Televidenia/VSC/RAM_1.v|
+!i113 1
+R5
+R6
+R7
+n@r@a@m_1

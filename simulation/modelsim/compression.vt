@@ -1,0 +1,127 @@
+// Copyright (C) 2017  Intel Corporation. All rights reserved.
+// Your use of Intel Corporation's design tools, logic functions 
+// and other software and tools, and its AMPP partner logic 
+// functions, and any output files from any of the foregoing 
+// (including device programming or simulation files), and any 
+// associated documentation or information are expressly subject 
+// to the terms and conditions of the Intel Program License 
+// Subscription Agreement, the Intel Quartus Prime License Agreement,
+// the Intel FPGA IP License Agreement, or other applicable license
+// agreement, including, without limitation, that your use is for
+// the sole purpose of programming logic devices manufactured by
+// Intel and sold by Intel or its authorized distributors.  Please
+// refer to the applicable agreement for further details.
+
+// *****************************************************************************
+// This file contains a Verilog test bench template that is freely editable to  
+// suit user's needs .Comments are provided in each section to help the user    
+// fill out necessary details.                                                  
+// *****************************************************************************
+// Generated on "04/07/2020 08:52:03"
+                                                                                
+// Verilog Test Bench template for design : compression
+// 
+// Simulation tool : ModelSim-Altera (Verilog)
+// 
+
+`timescale 1 ps/ 1 ps
+module compression_video_vlg_tst2();
+// constants                                           
+// general purpose registers
+// test vector input registers
+reg clk_in;
+reg clk_out;
+reg rst;
+reg enable;
+reg [15:0] input_pix;
+reg [11:0] lines;
+reg newline;
+// wires                                               
+wire [15:0]  output_pix;
+
+localparam period = 150;
+localparam half_period = 75;
+localparam period_2 = 100;
+localparam half_period_2 = 50;
+integer count1 = 0, count2 = 10000;
+integer count_pix = 0, count_lines = 0;
+integer m = 0;
+
+// assign statements (if any)                          
+compression_video i1 (
+// port map - connection between master ports and signals/registers   
+	.clk_in(clk_in),
+	.clk_out(clk_out),
+	.enable(enable),
+	.input_pix(input_pix),
+	.output_pix(output_pix),
+	.rst(rst),
+	.lines(lines),
+	.newline(newline)
+);
+initial                                                
+begin                                                  
+	clk_in = 1;
+	rst = 1;
+	enable = 0;
+	#period;
+
+
+	rst = 0;
+	enable = 1;
+	#period;
+
+end
+always
+begin
+	@ (posedge clk_in)
+	input_pix = {count2[7:0], count1[7:0]};
+	if (count1 == 200) begin
+		count1 = 0;
+	end else begin
+		count1 = count1 + 10;
+	end
+	if (count2 == 0) begin
+		count2 = 200;
+	end else begin
+		count2 = count2 - 10;
+	end
+end
+
+always
+begin
+	@ (posedge clk_in)
+	lines = count_lines;
+	if (count_lines == 2099) begin
+		count_lines = 0;
+	end else begin
+		count_lines = count_lines + 1;
+	end
+end
+
+always
+begin
+	@ (posedge clk_in)
+	if (count_pix == 2099) begin
+		newline = 1;
+		count_pix = 0;
+	end else begin
+		count_pix = count_pix + 1;
+		newline = 0;
+	end
+end
+
+
+
+always
+begin
+forever #half_period clk_in = !clk_in;
+end
+
+always
+begin
+forever #half_period_2 clk_out = !clk_out;
+end
+
+endmodule
+

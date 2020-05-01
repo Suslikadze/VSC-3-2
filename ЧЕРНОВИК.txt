@@ -1,0 +1,117 @@
+RAM_1 RAM_1(
+    .address(lines),
+    .clock(clk_in),
+    .data(data_in_RAM),
+    .wren(wr_enable_1),
+    .rden(rd_enable_1),
+    .q(data_from_RAM1)
+);
+RAM_1 RAM_2(
+    .address(lines),
+    .clock(clk_in),
+    .data(data_in_RAM),
+    .wren(wr_enable_2),
+    .rden(rd_enable_2),
+    .q(data_from_RAM2)
+);
+RAM_1 RAM_3(
+    .address(lines),
+    .clock(clk_in),
+    .data(data_in_RAM),
+    .wren(wr_enable_3),
+    .rden(rd_enable_3),
+    .q(data_from_RAM3)
+);
+RAM_1 RAM_4(
+    .address(lines),
+    .clock(clk_in),
+    .data(data_in_RAM),
+    .wren(wr_enable_4),
+    .rden(rd_enable_4),
+    .q(data_from_RAM4)
+);
+RAM_1 RAM_5(
+    .address(lines),
+    .clock(clk_in),
+    .data(data_in_RAM),
+    .wren(wr_enable_5),
+    .rden(rd_enable_5),
+    .q(data_from_RAM)
+);
+/////////////////////////////////////////
+wr_enable_1 <= 1;
+                    wr_enable_2 <= 0;   
+                    wr_enable_3 <= 0;
+                    wr_enable_4 <= 0;
+                    wr_enable_5 <= 0;
+
+                    rd_enable_1 <= 0;
+                    rd_enable_2 <= 1;
+                    rd_enable_3 <= 1;
+                    rd_enable_4 <= 1; 
+                    rd_enable_5 <= 1;
+
+                    average1 <= (data_from_RAM2 + data_from_RAM3) / `low_coef;
+                    average2 <= (data_from_RAM3 + data_from_RAM4) / `low_coef;
+                end
+            3'd1: begin
+                    wr_enable_1 <= 0;
+                    wr_enable_2 <= 1;   
+                    wr_enable_3 <= 0;
+                    wr_enable_4 <= 0;
+                    wr_enable_5 <= 0;
+
+                    rd_enable_1 <= 1;
+                    rd_enable_2 <= 0;
+                    rd_enable_3 <= 1;
+                    rd_enable_4 <= 1; 
+                    rd_enable_5 <= 1;
+
+                     average1 <= (data_from_RAM4 + data_from_RAM5) / `low_coef;
+                end
+            3'd2: begin
+                    wr_enable_1 <= 0;
+                    wr_enable_2 <= 0;   
+                    wr_enable_3 <= 1;
+                    wr_enable_4 <= 0;
+                    wr_enable_5 <= 0;
+
+                    rd_enable_1 <= 1;
+                    rd_enable_2 <= 1;
+                    rd_enable_3 <= 0;
+                    rd_enable_4 <= 1;  
+                    rd_enable_5 <= 1;
+
+                    average1 <= (data_from_RAM5 + data_from_RAM1) / 2;
+                    average2 <= (data_from_RAM1 + data_from_RAM2) / 2;
+                end
+            3'd3: begin
+                    wr_enable_1 <= 0;
+                    wr_enable_2 <= 0;   
+                    wr_enable_3 <= 0;
+                    wr_enable_4 <= 1;
+                    wr_enable_5 <= 0;
+
+                    rd_enable_1 <= 1;
+                    rd_enable_2 <= 1;
+                    rd_enable_3 <= 1;
+                    rd_enable_4 <= 0;   
+                    rd_enable_5 <= 1;
+
+                end
+            3'd4: begin
+                    wr_enable_1 <= 0;
+                    wr_enable_2 <= 0;   
+                    wr_enable_3 <= 0;
+                    wr_enable_4 <= 0;  
+                    wr_enable_5 <= 1;
+
+                    rd_enable_1 <= 1;
+                    rd_enable_2 <= 1;
+                    rd_enable_3 <= 1;
+                    rd_enable_4 <= 1;   
+                    rd_enable_5 <= 0;
+
+                    average1 <= (data_from_RAM1 + data_from_RAM2) / 2;
+                end
+        endcase
