@@ -17,25 +17,21 @@ localparam width_SR_input = `up_coef * `low_coef - 1;
 
 reg [`width_of_data_pix - 1:0] SR_for_input [width_SR_input:0]; //Сдвиговые регистр для входящих пикселей
 reg [`width_of_data_pix - 1:0] SR_delta [`up_coef:0]; //Сдвиговый регистр для средних арефметических
-reg [2*`width_of_data_pix - 1:0] data_out, data_to_multiplicator; 
+wire [`width_of_data_pix - 1:0] data_from_multiplicator_0_5; 
+
+reg [2*`width_of_data_pix - 1:0] data_out, data_to_multiplicator_0_33, data_to_multiplicator_0_5; 
 integer i, j = 0;
-reg [`width_of_data_pix - 1:0] coef_for_mult_0_5, [`width_of_data_pix - 1:0] coef_for_mult_0_33;
+wire [`width_of_data_pix - 1:0] coef_for_mult_0_5;
 reg newdata_to_line = 0;
 
 //////////////////////////////////////////////////////////
-assign output_pix = data_out;
-assign coef_for_mult_0_5 = 8'b10000000;
-assign coef_for_mult_0_33 = 8'b01010100;//////////////////////////////////////////////////////////
+assign output_pix               = data_out;
+assign coef_for_mult_0_5        = 8'b10000000;
+assign coef_for_mult_0_33       = 8'b01010100;
+//! ////////////////////////////////////////////////////////
+//Сдвиговый регистр для входных значений
 always @(posedge clk_in) begin
     if (enable) begin
-        
-        // if (i > 1) begin
-        //     SR_for_input[i] <= SR_for_input[i + 1];
-        //     i <= i - 1;
-        //     SR_for_input[width_SR_input] <= input_pix;
-        // end else begin
-        //    i <= width_SR_input - 1;
-        // end
         for (i = 0; i < width_SR_input + 1; i = i + 1) begin
             SR_for_input[0] <= input_pix;
             if (i != 0) begin
@@ -47,6 +43,7 @@ always @(posedge clk_in) begin
 end
 //! ////////////////////////////////////////////////////////
 //TODO SIGHTED ЗНАЧЕНИЕ!!!!
+//Сдвиговый регистр для разности значений
 always @(posedge clk_in) begin
     if (enable) begin
         for (j = 0; j < `up_coef + 1; j = j + 1) begin
@@ -59,36 +56,58 @@ always @(posedge clk_in) begin
     end
 end 
 //! ////////////////////////////////////////////////////////
-//TODO Подсоединить модуль умножителя
-multiplicator mult_for_out_pix(
+multiplication mult_for_out_shift_register(
     .clock          (clk_in),
-    .dataa          (),
-    .datab          (coef_for_mult_0_33),
-    .result         (data_out)
+    .dataa          (SR_delta[`up_coef]),
+    .datab          (coef_for_mult_0_5),
+    .result         (data_from_multiplicator_0_5)
 );
+
+// multiplication mult_for_out_pix(
+//     .clock          (clk_in),
+//     .dataa          (data_to_multiplicator_0_33),
+//     .datab          (coef_for_mult_0_33),
+//     .result         (data_out)
+// );
 //! ////////////////////////////////////////////////////////
+// TODO знаковая разность между вторым и первым пикселем
 //счетчик для определения кратности пикселей
-always @(posedge clk_out) begin
-    if (enable) begin
-        if (newdata_to_line) begin
-            data_out <= (SR_for_input[width_SR_input] + SR_delta[`up_coef] + SR_for_input[width_SR_input - 1]);
-            newdata_to_line <= !newdata_to_line;
-        end else begin
-            data_out <= (SR_delta[`up_coef - 1] + SR_delta[`up_coef - 2] + SR_for_input[width_SR_input - 2]);
-            newdata_to_line <= !newdata_to_line;
-        end
-    end                                                                
-    //     case (pix % 'up_coef) 
-    //         2'b00: newdata_to_line <= 0;
-    //         2'b01: begin
-    //             newdata_to_line <= 1;
-    //             data_out[(2 * `width_of_data_pix - 1) : `width_of_data_pix] <= (SR_for_input[width_SR_input] + SR_delta[`up_coef] + SR_for_input[width_SR_input - 1]) 
-    //                                                                                 / (`up_coef * `low_coef) * `low_coef;
-    //             data_out[`width_of_data_pix - 1 : 0] <= (SR_delta[`up_coef - 1] + SR_delta[`up_coef - 2] + SR_for_input[width_SR_input - 2])
-    //                                                                                 / (`up_coef * `low_coef) * `low_coef;
-    //         end
-    //         2'b10: newdata_to_line <= 1;  
-    // end
-end
+// always @(posedge clk_out) begin
+//     if (enable) begin
+
+
+
+
+
+
+
+
+
+
+
+//         if (newdata_to_line) begin
+
+
+//             if (SR_for_input[width_SR_input] < SR_for_input[width_SR_input - 1]) begin
+//                 data_to_multiplicator_0_33 <= (SR_for_input[width_SR_input] + SR_for_input[width_SR_input]
+//                                         + data_from_multiplicator_0_5 + SR_for_input[width_SR_input - 1]);
+//             end else begin
+//                 data_to_multiplicator_0_33 <= (SR_for_input[width_SR_input] + SR_for_input[width_SR_input - 1]
+//                                         + data_from_multiplicator_0_5 + SR_for_input[width_SR_input - 1]);
+//             end
+//             newdata_to_line <= !newdata_to_line;
+
+//         end else begin
+
+//             if (SR_for_input[width_SR_input] < SR_for_input[width_SR_input - 1]) begin
+//                 data_to_multiplicator_0_33 <= ( + + SR_for_input[width_SR_input - 2]);
+//             end else begin
+
+//             end
+//             newdata_to_line <= !newdata_to_line;
+
+//         end
+//     end                                                                
+// end
 
 endmodule

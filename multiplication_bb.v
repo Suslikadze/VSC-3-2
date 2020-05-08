@@ -40,14 +40,14 @@ module multiplication (
 	input	  clock;
 	input	[7:0]  dataa;
 	input	[7:0]  datab;
-	output	[15:0]  result;
+	output	[7:0]  result;
 
 endmodule
 
 // ============================================================
 // CNX file retrieval info
 // ============================================================
-// Retrieval info: PRIVATE: AutoSizeResult NUMERIC "1"
+// Retrieval info: PRIVATE: AutoSizeResult NUMERIC "0"
 // Retrieval info: PRIVATE: B_isConstant NUMERIC "0"
 // Retrieval info: PRIVATE: ConstantB NUMERIC "255"
 // Retrieval info: PRIVATE: INTENDED_DEVICE_FAMILY STRING "Cyclone IV E"
@@ -59,7 +59,7 @@ endmodule
 // Retrieval info: PRIVATE: ValidConstant NUMERIC "1"
 // Retrieval info: PRIVATE: WidthA NUMERIC "8"
 // Retrieval info: PRIVATE: WidthB NUMERIC "8"
-// Retrieval info: PRIVATE: WidthP NUMERIC "16"
+// Retrieval info: PRIVATE: WidthP NUMERIC "8"
 // Retrieval info: PRIVATE: aclr NUMERIC "0"
 // Retrieval info: PRIVATE: clken NUMERIC "0"
 // Retrieval info: PRIVATE: new_diagram STRING "1"
@@ -71,15 +71,15 @@ endmodule
 // Retrieval info: CONSTANT: LPM_TYPE STRING "LPM_MULT"
 // Retrieval info: CONSTANT: LPM_WIDTHA NUMERIC "8"
 // Retrieval info: CONSTANT: LPM_WIDTHB NUMERIC "8"
-// Retrieval info: CONSTANT: LPM_WIDTHP NUMERIC "16"
+// Retrieval info: CONSTANT: LPM_WIDTHP NUMERIC "8"
 // Retrieval info: USED_PORT: clock 0 0 0 0 INPUT NODEFVAL "clock"
 // Retrieval info: USED_PORT: dataa 0 0 8 0 INPUT NODEFVAL "dataa[7..0]"
 // Retrieval info: USED_PORT: datab 0 0 8 0 INPUT NODEFVAL "datab[7..0]"
-// Retrieval info: USED_PORT: result 0 0 16 0 OUTPUT NODEFVAL "result[15..0]"
+// Retrieval info: USED_PORT: result 0 0 8 0 OUTPUT NODEFVAL "result[7..0]"
 // Retrieval info: CONNECT: @clock 0 0 0 0 clock 0 0 0 0
 // Retrieval info: CONNECT: @dataa 0 0 8 0 dataa 0 0 8 0
 // Retrieval info: CONNECT: @datab 0 0 8 0 datab 0 0 8 0
-// Retrieval info: CONNECT: result 0 0 16 0 @result 0 0 16 0
+// Retrieval info: CONNECT: result 0 0 8 0 @result 0 0 8 0
 // Retrieval info: GEN_FILE: TYPE_NORMAL multiplication.v TRUE
 // Retrieval info: GEN_FILE: TYPE_NORMAL multiplication.inc FALSE
 // Retrieval info: GEN_FILE: TYPE_NORMAL multiplication.cmp FALSE
